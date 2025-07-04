@@ -1,0 +1,34 @@
+/* LAYOUT */
+
+// If you are wanting a right-to-left layout, uncomment the following line.
+// $direction: right;
+
+/* COLOURS */
+
+// Chhattisgarh-inspired colors
+$orange: #ff6b35; // Warm orange representing the state's energy
+$bluey: #2c5aa0; // Deep blue representing trust and reliability
+$green: #4caf50; // Green representing growth and development
+
+$primary: $orange;
+$primary_b: #000000;
+$primary_text: #222222;
+
+$base_bg: $bluey;
+$base_fg: #ffffff;
+
+$nav_background_colour: $bluey;
+$nav_colour: #ffffff;
+$nav_hover_background_colour: $orange;
+
+// Colour used for front page 'how to report a problem' steps
+$col_big_numbers: #ccc;
+
+$col_click_map: $bluey;
+
+$front-main-background-desktop: $orange;
+
+// Additional Chhattisgarh-specific colors
+$success_color: $green;
+$warning_color: #ff9800;
+$error_color: #f44336; 

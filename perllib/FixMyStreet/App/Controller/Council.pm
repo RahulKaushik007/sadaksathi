@@ -98,9 +98,35 @@ sub load_and_check_areas : Private {
 
     # If we don't have any areas we can't accept the report
     if ( !scalar keys %$all_areas ) {
-        $c->stash->{location_error_no_areas} = 1;
-        $c->stash->{location_error} = _('That location does not appear to be covered by a council; perhaps it is offshore or outside the country. Please try again.');
-        return;
+        $c->log->debug('NO AREAS FOUND. Cobrand: ' . $c->cobrand->moniker . ", lat: $c->stash->{latitude}, lon: $c->stash->{longitude}");
+        # Special handling for Bilaspur cobrand - add Bilaspur area if within bounds
+        if ($c->cobrand->moniker eq 'bilaspur') {
+            my $lat = $c->stash->{latitude};
+            my $lon = $c->stash->{longitude};
+            $c->log->debug("Bilaspur fallback check: lat=$lat, lon=$lon");
+            if (defined $lat && defined $lon && 
+                $lat >= 21.9500 && $lat <= 22.2000 && 
+                $lon >= 82.0000 && $lon <= 82.3000) {
+                $c->log->debug("Adding Bilaspur Municipal Corporation area");
+                # Add Bilaspur Municipal Corporation area
+                $all_areas->{999999} = {
+                    id    => 999999,
+                    name  => 'Bilaspur Municipal Corporation',
+                    type  => 'local-authority-district',
+                    codes => { gss => 'E999999' },
+                };
+            } else {
+                $c->log->debug("Location outside Bilaspur bounds");
+                $c->stash->{location_error_no_areas} = 1;
+                $c->stash->{location_error} = _('That location does not appear to be covered by a council; perhaps it is offshore or outside the country. Please try again.');
+                return;
+            }
+        } else {
+            $c->log->debug("Cobrand is not bilaspur, it is: " . $c->cobrand->moniker);
+            $c->stash->{location_error_no_areas} = 1;
+            $c->stash->{location_error} = _('That location does not appear to be covered by a council; perhaps it is offshore or outside the country. Please try again.');
+            return;
+        }
     }
 
     # all good if we have some areas left

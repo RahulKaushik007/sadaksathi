@@ -1,0 +1,35 @@
+/* LAYOUT */
+
+// If you are wanting a right-to-left layout, uncomment the following line.
+// $direction: right;
+
+/* COLOURS */
+
+// Bilaspur-inspired colors
+$orange: #ff5722; // Vibrant orange representing Bilaspur's energy
+$bluey: #1976d2; // Professional blue representing trust
+$green: #388e3c; // Green representing the city's growth
+$gold: #ffc107; // Gold representing prosperity
+
+$primary: $orange;
+$primary_b: #000000;
+$primary_text: #222222;
+
+$base_bg: $bluey;
+$base_fg: #ffffff;
+
+$nav_background_colour: $bluey;
+$nav_colour: #ffffff;
+$nav_hover_background_colour: $orange;
+
+// Colour used for front page 'how to report a problem' steps
+$col_big_numbers: #ccc;
+
+$col_click_map: $bluey;
+
+$front-main-background-desktop: $orange;
+
+// Additional Bilaspur-specific colors
+$success_color: $green;
+$warning_color: $gold;
+$error_color: #f44336; 

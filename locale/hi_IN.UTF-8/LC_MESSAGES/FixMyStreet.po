@@ -1,0 +1,172 @@
+# Hindi translations for Bilaspur FixMyStreet
+# Copyright (C) 2024 Bilaspur Municipal Corporation
+# This file is distributed under the same license as the FixMyStreet package.
+
+msgid ""
+msgstr ""
+"Project-Id-Version: FixMyStreet Bilaspur\n"
+"Report-Msgid-Bugs-To: support@bilaspur.fixmystreet.in\n"
+"POT-Creation-Date: 2024-01-01 12:00+0530\n"
+"PO-Revision-Date: 2024-01-01 12:00+0530\n"
+"Last-Translator: Bilaspur Municipal Corporation\n"
+"Language: hi_IN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: templates/web/base/index.html:1
+msgid "Report a problem"
+msgstr "समस्या की रिपोर्ट करें"
+
+#: templates/web/base/index.html:2
+msgid "Report a problem in your street"
+msgstr "अपनी सड़क में समस्या की रिपोर्ट करें"
+
+#: templates/web/base/index.html:3
+msgid "Find and report local problems"
+msgstr "स्थानीय समस्याओं को खोजें और रिपोर्ट करें"
+
+#: templates/web/base/index.html:4
+msgid "Enter a nearby postcode, or street name and area"
+msgstr "निकटवर्ती पिन कोड, या सड़क का नाम और क्षेत्र दर्ज करें"
+
+#: templates/web/base/index.html:5
+msgid "Search"
+msgstr "खोजें"
+
+#: templates/web/base/index.html:6
+msgid "Or locate the problem on a map"
+msgstr "या मानचित्र पर समस्या का स्थान निर्धारित करें"
+
+#: templates/web/base/index.html:7
+msgid "Click map"
+msgstr "मानचित्र पर क्लिक करें"
+
+#: templates/web/base/report/new/fill_in_details_text.html:1
+msgid "Fill in the details of the problem below."
+msgstr "नीचे समस्या का विवरण भरें।"
+
+#: templates/web/base/report/new/fill_in_details_text.html:2
+msgid "Please be as specific as possible about the location and nature of the problem."
+msgstr "कृपया समस्या के स्थान और प्रकृति के बारे में जितना संभव हो उतना विशिष्ट रहें।"
+
+#: templates/web/base/report/new/fill_in_details_text.html:3
+msgid "This information will be sent to Bilaspur Municipal Corporation."
+msgstr "यह जानकारी बिलासपुर नगर निगम को भेजी जाएगी।"
+
+#: templates/web/base/report/new/fill_in_details_text.html:4
+msgid "Your report will be visible to everyone."
+msgstr "आपकी रिपोर्ट सभी को दिखाई देगी।"
+
+#: templates/web/base/report/new/fill_in_details_text.html:5
+msgid "Location"
+msgstr "स्थान"
+
+#: templates/web/base/report/new/fill_in_details_text.html:6
+msgid "Category"
+msgstr "श्रेणी"
+
+#: templates/web/base/report/new/fill_in_details_text.html:7
+msgid "Details"
+msgstr "विवरण"
+
+#: templates/web/base/report/new/fill_in_details_text.html:8
+msgid "Photo (optional)"
+msgstr "फोटो (वैकल्पिक)"
+
+#: templates/web/base/report/new/fill_in_details_text.html:9
+msgid "Your name"
+msgstr "आपका नाम"
+
+#: templates/web/base/report/new/fill_in_details_text.html:10
+msgid "Your email"
+msgstr "आपका ईमेल"
+
+#: templates/web/base/report/new/fill_in_details_text.html:11
+msgid "Your phone number"
+msgstr "आपका फोन नंबर"
+
+#: templates/web/base/report/new/fill_in_details_text.html:12
+msgid "Submit report"
+msgstr "रिपोर्ट सबमिट करें"
+
+#: templates/web/base/report/new/fill_in_details_text.html:13
+msgid "Potholes"
+msgstr "गड्ढे"
+
+#: templates/web/base/report/new/fill_in_details_text.html:14
+msgid "Street Lighting"
+msgstr "सड़क प्रकाश"
+
+#: templates/web/base/report/new/fill_in_details_text.html:15
+msgid "Garbage Collection"
+msgstr "कचरा संग्रह"
+
+#: templates/web/base/report/new/fill_in_details_text.html:16
+msgid "Water Supply"
+msgstr "जल आपूर्ति"
+
+#: templates/web/base/report/new/fill_in_details_text.html:17
+msgid "Sewage Problems"
+msgstr "सीवरेज समस्याएं"
+
+#: templates/web/base/report/new/fill_in_details_text.html:18
+msgid "Traffic Signals"
+msgstr "यातायात संकेत"
+
+#: templates/web/base/report/new/fill_in_details_text.html:19
+msgid "Street Signs"
+msgstr "सड़क संकेत"
+
+#: templates/web/base/report/new/fill_in_details_text.html:20
+msgid "Street Cleaning"
+msgstr "सड़क सफाई"
+
+#: templates/web/base/report/new/fill_in_details_text.html:21
+msgid "Tree Maintenance"
+msgstr "पेड़ रखरखाव"
+
+#: templates/web/base/report/new/fill_in_details_text.html:22
+msgid "Street Vendors"
+msgstr "सड़क विक्रेता"
+
+#: templates/web/base/report/new/fill_in_details_text.html:23
+msgid "Report submitted successfully"
+msgstr "रिपोर्ट सफलतापूर्वक सबमिट की गई"
+
+#: templates/web/base/report/new/fill_in_details_text.html:24
+msgid "Thank you for reporting this problem to Bilaspur Municipal Corporation."
+msgstr "बिलासपुर नगर निगम को यह समस्या रिपोर्ट करने के लिए धन्यवाद।"
+
+#: templates/web/base/report/new/fill_in_details_text.html:25
+msgid "We will investigate and take appropriate action."
+msgstr "हम जांच करेंगे और उचित कार्रवाई करेंगे।"
+
+#: templates/web/base/report/new/fill_in_details_text.html:26
+msgid "Your report reference number is:"
+msgstr "आपकी रिपोर्ट का संदर्भ नंबर है:"
+
+#: templates/web/base/report/new/fill_in_details_text.html:27
+msgid "Welcome to Bilaspur FixMyStreet"
+msgstr "बिलासपुर फिक्समीस्ट्रीट में आपका स्वागत है"
+
+#: templates/web/base/report/new/fill_in_details_text.html:28
+msgid "Report civic issues in your city"
+msgstr "अपने शहर में नागरिक समस्याओं की रिपोर्ट करें"
+
+#: templates/web/base/report/new/fill_in_details_text.html:29
+msgid "Contact Bilaspur Municipal Corporation"
+msgstr "बिलासपुर नगर निगम से संपर्क करें"
+
+#: templates/web/base/report/new/fill_in_details_text.html:30
+msgid "Phone: +91-7752-222222"
+msgstr "फोन: +91-7752-222222"
+
+#: templates/web/base/report/new/fill_in_details_text.html:31
+msgid "Email: commissioner@bilaspurmunicipal.gov.in"
+msgstr "ईमेल: commissioner@bilaspurmunicipal.gov.in"
+
+#: templates/web/base/report/new/fill_in_details_text.html:32
+msgid "Address: Municipal Corporation Building, Bilaspur, Chhattisgarh 495001"
+msgstr "पता: नगर निगम भवन, बिलासपुर, छत्तीसगढ़ 495001" 

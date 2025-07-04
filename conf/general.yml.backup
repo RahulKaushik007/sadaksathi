@@ -1,0 +1,183 @@
+# general.yml-example:
+# This file contains example values for the "general.yml" config file. It
+# contains various configuration parameters, in YAML syntax.
+#
+# For more information about this file, and general documentation on setting up
+# the FixMyStreet platform, please see https://fixmystreet.org/
+#
+# Specific details about this file can be found at
+# https://fixmystreet.org/customising/config/
+#
+# To start, you can copy this file to one called "general.yml" in the same
+# directory. Or have multiple config files and use a symlink to change between
+# them. Using the install script or AMI will have created a general.yml file
+# for you.
+
+# FixMyStreet Configuration for Bilaspur, Chhattisgarh, India
+
+# Database configuration
+database:
+  host: localhost
+  port: 5432
+  name: fixmystreet_bilaspur
+  user: fixmystreet_user
+  password: bilaspur123
+
+# Email configuration
+email:
+  host: smtp.gmail.com
+  port: 587
+  username: bilaspur.fixmystreet@gmail.com
+  password: your_email_password_here
+  from: "Bilaspur FixMyStreet <bilaspur.fixmystreet@gmail.com>"
+
+# Site configuration
+site_name: "Bilaspur FixMyStreet"
+site_domain: "bilaspur.fixmystreet.in"
+base_url: "http://localhost:3000"
+cobrand: "bilaspur"
+cobrand_data: "bilaspur"
+
+# Photo storage configuration
+UPLOAD_DIR: "photos"
+PHOTO_STORAGE_OPTIONS:
+  UPLOAD_DIR: "photos"
+
+# Map configuration
+map:
+  type: "OpenStreetMap"
+  center_lat: 22.0735
+  center_lon: 82.1599
+  zoom: 12
+  tiles: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+
+# Language configuration
+languages:
+  - "en"
+  - "hi"
+
+default_language: "hi"
+
+# Bilaspur Municipal Corporation configuration
+bodies:
+  - name: "Bilaspur Municipal Corporation"
+    short_name: "BMC"
+    email: "commissioner@bilaspurmunicipal.gov.in"
+    website: "https://bilaspurmunicipal.gov.in"
+    phone: "+91-7752-222222"
+    address: "Municipal Corporation Building, Bilaspur, Chhattisgarh 495001"
+
+# Problem categories for Bilaspur
+categories:
+  - name: "Potholes"
+    email: "engineering@bilaspurmunicipal.gov.in"
+  - name: "Street Lighting"
+    email: "electrical@bilaspurmunicipal.gov.in"
+  - name: "Garbage Collection"
+    email: "sanitation@bilaspurmunicipal.gov.in"
+  - name: "Water Supply"
+    email: "water@bilaspurmunicipal.gov.in"
+  - name: "Sewage Problems"
+    email: "sewage@bilaspurmunicipal.gov.in"
+  - name: "Traffic Signals"
+    email: "traffic@bilaspurmunicipal.gov.in"
+  - name: "Street Signs"
+    email: "engineering@bilaspurmunicipal.gov.in"
+  - name: "Street Cleaning"
+    email: "sanitation@bilaspurmunicipal.gov.in"
+  - name: "Tree Maintenance"
+    email: "horticulture@bilaspurmunicipal.gov.in"
+  - name: "Street Vendors"
+    email: "licensing@bilaspurmunicipal.gov.in"
+
+# Bilaspur city boundaries (approximate)
+boundaries:
+  north: 22.2000
+  south: 21.9500
+  east: 82.3000
+  west: 82.0000
+
+# Contact information
+contact:
+  name: "Bilaspur FixMyStreet Support"
+  email: "support@bilaspur.fixmystreet.in"
+  phone: "+91-7752-333333"
+
+# Social media
+social_media:
+  facebook: "https://facebook.com/bilaspurfixmystreet"
+  twitter: "https://twitter.com/bilaspurfms"
+  instagram: "https://instagram.com/bilaspurfixmystreet"
+
+# SMS configuration (if available)
+sms:
+  provider: "twilio"
+  account_sid: "your_twilio_account_sid"
+  auth_token: "your_twilio_auth_token"
+  from_number: "+91XXXXXXXXXX"
+
+# File upload configuration
+uploads:
+  max_size: "5MB"
+  allowed_types: ["jpg", "jpeg", "png", "gif"]
+  storage_path: "photos"
+
+# Security configuration
+security:
+  session_timeout: 3600
+  max_login_attempts: 5
+  password_min_length: 8
+  require_https: false
+
+# Performance configuration
+performance:
+  cache_enabled: true
+  cache_duration: 3600
+  compression_enabled: true
+  static_files_cache: 86400
+
+# Monitoring configuration
+monitoring:
+  error_reporting: true
+  log_level: "info"
+  log_file: "/var/log/fixmystreet/bilaspur.log"
+
+# PostgreSQL database details for FixMyStreet (legacy format)
+FMS_DB_HOST: 'localhost'
+FMS_DB_PORT: '5432'
+FMS_DB_NAME: 'fixmystreet_bilaspur'
+FMS_DB_USER: 'fixmystreet_user'
+FMS_DB_PASS: 'bilaspur123'
+FMS_DB_SSLMODE: 'prefer'
+
+# The base URL of the install.
+BASE_URL: 'http://localhost:3000'
+SECURE_PROXY_SSL_HEADER: ''
+CONTENT_SECURITY_POLICY: ''
+
+# Email domain used for emails, and contact name/email for admin use.
+EMAIL_DOMAIN: 'bilaspur.fixmystreet.in'
+CONTACT_EMAIL: 'support@bilaspur.fixmystreet.in'
+CONTACT_NAME: 'Bilaspur FixMyStreet'
+DO_NOT_REPLY_EMAIL: 'noreply@bilaspur.fixmystreet.in'
+
+# Whether this is a development site or not.
+STAGING_SITE: 1
+STAGING_FLAGS:
+  send_reports: 0
+  skip_checks: 0
+  hide_staging_banner: 0
+
+# What to use as front page/alert example places placeholder
+EXAMPLE_PLACES: [ 'Bilaspur', 'Raipur Road', 'Station Road' ]
+
+# An array of languages for the site
+LANGUAGES:
+  - 'en-gb,English,en_GB'
+  - 'hi-in,Hindi,hi_IN'
+
+# A postgresql text search configuration value
+DB_FULL_TEXT_SEARCH_CONFIG: 'english'
+
+# Time zone
+TIME_ZONE: "Asia/Kolkata"

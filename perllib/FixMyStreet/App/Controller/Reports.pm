@@ -30,6 +30,24 @@ Show the summary page of all reports.
 sub index : Path : Args(0) {
     my ( $self, $c ) = @_;
 
+    # For Bilaspur cobrand, show all reports directly
+    if ($c->cobrand->moniker eq 'bilaspur') {
+        # Get all problems directly from database
+        my $problems = $c->model('DB::Problem')->search(
+            {},
+            {
+                order_by => { -desc => 'me.created' },
+                rows => 100,  # Limit to 100 most recent
+                prefetch => ['user']
+            }
+        );
+
+        $c->stash->{problems} = $problems;
+        $c->stash->{total_count} = $problems->count;
+        $c->stash->{template} = 'reports/index.html';
+        return;
+    }
+
     if ( $c->cobrand->call_hook('report_page_data') ) {
         return 1;
     }
@@ -110,6 +128,30 @@ sub body : Path : Args(1) {
     my ( $self, $c, $body ) = @_;
     $c->detach( 'ward', [ $body ] );
 }
+
+=head2 simple
+
+Show a simple list of all reports without filtering.
+
+=cut
+
+# sub simple : Path('simple') : Args(0) {
+#     my ( $self, $c ) = @_;
+# 
+#     # Get all problems directly from database
+#     my $problems = $c->model('DB::Problem')->search(
+#         {},
+#         {
+#             order_by => { -desc => 'created' },
+#             rows => 100,  # Limit to 100 most recent
+#             prefetch => ['user']
+#         }
+#     );
+# 
+#     $c->stash->{problems} = $problems;
+#     $c->stash->{total_count} = $problems->count;
+#     $c->stash->{template} = 'reports/simple.html';
+# }
 
 =head2 ward
 
@@ -622,6 +664,21 @@ sub load_and_group_problems : Private {
         pins          => \@pins,
     );
 
+    # Force show all states for Bilaspur
+    if ($c->cobrand->moniker eq 'bilaspur') {
+        $problems = $c->model('DB::Problem')->search({}, { order_by => { -desc => 'id' } });
+    }
+
+    my $count = $problems->count;
+    $c->log->debug("[DEBUG] Found $count problems");
+    my $i = 0;
+    $problems->reset;
+    while (my $p = $problems->next) {
+        $i++;
+        $c->log->debug("[DEBUG] Problem $i: id=" . $p->id . ", state=" . $p->state . ", title=" . $p->title);
+    }
+    $problems->reset;
+
     return 1;
 }
 
@@ -773,7 +830,6 @@ sub stash_report_filter_status : Private {
     }
 
     if ($status{all}) {
-        # %filter_status = ();
         %filter_problem_states = %$visible;
     }
 
@@ -807,7 +863,12 @@ sub stash_report_filter_status : Private {
       %filter_problem_states = (%filter_problem_states, %$s);
     }
 
-    %filter_problem_states = map { $_ => 1 } grep { $visible->{$_} } keys %filter_problem_states;
+    # PATCH: Always include 'unconfirmed' for Bilaspur
+    if ($c->cobrand->moniker eq 'bilaspur') {
+        $filter_problem_states{unconfirmed} = 1;
+    }
+
+    %filter_problem_states = map { $_ => 1 } grep { $visible->{$_} || $_ eq 'unconfirmed' } keys %filter_problem_states;
 
     $c->stash->{filter_problem_states} = \%filter_problem_states;
     $c->stash->{filter_status} = \%filter_status;

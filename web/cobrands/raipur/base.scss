@@ -1,0 +1,31 @@
+@import "./_colours";
+@import "../sass/h5bp";
+@import "../sass/mixins";
+
+@import "../sass/base";
+
+// Raipur-specific customizations
+.raipur-header {
+    background: linear-gradient(135deg, $primary 0%, $bluey 100%);
+    color: white;
+    padding: 1rem 0;
+    
+    h1 {
+        color: white;
+        font-weight: bold;
+    }
+}
+
+.raipur-footer {
+    background-color: $bluey;
+    color: white;
+    padding: 2rem 0;
+    
+    a {
+        color: lighten($bluey, 30%);
+        
+        &:hover {
+            color: $orange;
+        }
+    }
+} 

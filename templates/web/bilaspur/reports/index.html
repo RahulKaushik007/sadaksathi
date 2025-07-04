@@ -1,0 +1,112 @@
+[% USE Number.Format -%]
+[% INCLUDE 'header.html', title = 'All Reports - Bilaspur', bodyclass = 'reports' %]
+
+<div class="reports-header">
+    <h1>All Reports - Bilaspur Municipal Corporation</h1>
+    <p><strong>Total Reports: [% total_count %]</strong></p>
+</div>
+
+<div class="reports-container">
+    [% IF problems.count > 0 %]
+        <div class="reports-list">
+            [% WHILE (problem = problems.next) %]
+                <div class="report-item">
+                    <div class="report-header">
+                        <h3>
+                            <a href="[% c.uri_for( '/report', problem.id ) %]">
+                                [% problem.title | html %]
+                            </a>
+                        </h3>
+                        <div class="report-meta">
+                            <strong>Category:</strong> [% problem.category || 'N/A' %]<br>
+                            <strong>Area:</strong> [% problem.bodies_str || 'Bilaspur Municipal Corporation' %]<br>
+                            <strong>Date:</strong> [% problem.created.strftime('%d/%m/%Y %H:%M') %]<br>
+                            <strong>Status:</strong> <span class="report-status status-[% problem.state %]">[% problem.state %]</span><br>
+                            <strong>Location:</strong> [% problem.latitude %], [% problem.longitude %]<br>
+                            [% IF problem.user %]
+                                <strong>Reported by:</strong> [% problem.user.name || 'Anonymous' %] ([% problem.user.email %])<br>
+                            [% END %]
+                        </div>
+                    </div>
+                </div>
+            [% END %]
+        </div>
+    [% ELSE %]
+        <p>No reports found in the database.</p>
+    [% END %]
+</div>
+
+<style>
+.reports-header {
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #f5f5f5;
+    border-radius: 5px;
+}
+
+.reports-list {
+    margin-top: 20px;
+}
+
+.report-item {
+    border: 1px solid #ddd;
+    margin: 15px 0;
+    padding: 20px;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.report-header h3 {
+    margin: 0 0 15px 0;
+    color: #333;
+}
+
+.report-header h3 a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.report-header h3 a:hover {
+    text-decoration: underline;
+}
+
+.report-meta {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.report-status {
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 3px;
+}
+
+.status-confirmed {
+    color: #28a745;
+    background: #d4edda;
+}
+
+.status-unconfirmed {
+    color: #ffc107;
+    background: #fff3cd;
+}
+
+.status-open {
+    color: #007bff;
+    background: #d1ecf1;
+}
+
+.status-fixed {
+    color: #28a745;
+    background: #d4edda;
+}
+
+.status-closed {
+    color: #dc3545;
+    background: #f8d7da;
+}
+</style>
+
+[% INCLUDE 'footer.html' %] 
