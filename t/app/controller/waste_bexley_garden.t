@@ -567,7 +567,7 @@ FixMyStreet::override_config {
                     );
 
                     like $mech->text,
-                        qr/Please review the information you’ve provided/,
+                        qr/Please review the information you've provided/,
                         'On review page';
                     like $mech->text,
                         qr/Total£185.00/, 'correct cost';
@@ -917,7 +917,7 @@ FixMyStreet::override_config {
 
         # Test valid submission
         $mech->submit_form_ok({ with_fields => \%valid_fields });
-        $mech->content_contains('Please review the information you’ve provided before you submit your garden subscription', 'Shows success message for valid submission');
+        $mech->content_contains('Please review the information you've provided before you submit your garden subscription', 'Shows success message for valid submission');
     };
 
     subtest 'Test direct debit submission flow' => sub {
@@ -967,7 +967,7 @@ FixMyStreet::override_config {
             sort_code => '123456'
         }});
 
-        $mech->content_contains('Please review the information you’ve provided before you submit your garden subscription');
+        $mech->content_contains('Please review the information you've provided before you submit your garden subscription');
 
         $mech->content_contains('Test McTest');
         my $discount_human = sprintf('%.2f', ($ggw_cost_first - $ggw_first_bin_discount) / 100);
@@ -1017,7 +1017,7 @@ FixMyStreet::override_config {
         $mech->content_contains('You have already submitted this form');
         $mech->content_contains('To avoid duplicate submissions, this form cannot be resubmitted.');
         $mech->content_lacks('Change answers');
-        $mech->content_lacks('Please review the information you’ve provided before you submit your garden subscription');
+        $mech->content_lacks('Please review the information you've provided before you submit your garden subscription');
 
         is $report->get_extra_metadata('direct_debit_customer_id'), 'CUSTOMER123', 'Correct customer ID';
         is $report->get_extra_metadata('direct_debit_contract_id'), 'CONTRACT123', 'Correct contract ID';
@@ -1087,7 +1087,7 @@ FixMyStreet::override_config {
             sort_code => '123456'
         }});
 
-        $mech->content_contains('Please review the information you’ve provided before you submit your garden subscription');
+        $mech->content_contains('Please review the information you've provided before you submit your garden subscription');
         $mech->submit_form_ok({ with_fields => { tandc => 1 } });
 
         my $report = FixMyStreet::DB->resultset("Problem")->order_by('-id')->first;
@@ -1627,7 +1627,7 @@ FixMyStreet::override_config {
         }});
 
         # Check summary page
-        $mech->content_contains('Please review the information you’ve provided before you submit your garden subscription');
+        $mech->content_contains('Please review the information you've provided before you submit your garden subscription');
         $mech->content_contains('Test McTest');
         my $discount_human = sprintf('%.2f', ($ggw_cost_first + $ggw_cost - $ggw_first_bin_discount) / 100);
         $mech->content_contains('£' . $discount_human);
