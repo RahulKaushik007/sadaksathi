@@ -14,10 +14,6 @@ __PACKAGE__->config(
     schema_class => 'FixMyStreet::DB::Schema',
     connect_info => sub { FixMyStreet::DB->schema->storage->dbh },
 );
-__PACKAGE__->config(
-    traits => ['QueryLog::AdoptPlack'],
-)
-    if Catalyst::Utils::env_value( 'FixMyStreet::App', 'DEBUG' );
 
 sub build_per_context_instance {
     my ( $self, $c ) = @_;

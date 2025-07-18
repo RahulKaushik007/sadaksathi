@@ -10,9 +10,15 @@ use warnings;
 use strict;
 
 use LWP::Simple;
-use Memcached;
 use XML::Simple;
 use Utils;
+
+# Make Memcached optional
+my $memcached_available = 0;
+eval {
+    require Memcached;
+    $memcached_available = 1;
+};
 
 my $osmapibase    = "https://api.openstreetmap.org/api/";
 my $nominatimbase = "https://nominatim.openstreetmap.org/";
@@ -53,7 +59,12 @@ sub string {
     $c->stash->{geocoder_url} = $url;
     my $js = FixMyStreet::Geocode::cache('osm', $url);
     if (!$js) {
-        return { error => _('Sorry, we could not find that location.') };
+        my $error_msg = _('Sorry, we could not find that location.');
+        # Allow cobrand to override error message
+        if ($c->cobrand->can('geocoding_error_message')) {
+            $error_msg = $c->cobrand->geocoding_error_message($error_msg);
+        }
+        return { error => $error_msg };
     }
 
     my ( $error, @valid_locations, $latitude, $longitude, $address );
@@ -77,6 +88,17 @@ sub string {
     }
 
     return { latitude => $latitude, longitude => $longitude, address => $address } if scalar @valid_locations == 1;
+    
+    # If no valid locations found after filtering, return a custom error
+    if (scalar @valid_locations == 0) {
+        my $error_msg = _('Sorry, we could not find that location in this area.');
+        # Allow cobrand to override error message
+        if ($c->cobrand->can('geocoding_error_message')) {
+            $error_msg = $c->cobrand->geocoding_error_message($error_msg);
+        }
+        return { error => $error_msg };
+    }
+    
     return { error => $error };
 }
 
@@ -104,19 +126,26 @@ sub _osmxml_to_hash {
 sub get_object_tags {
     my ($type, $id) = @_;
     my $url = "${osmapibase}0.6/$type/$id";
-    my $key = "OSM:get_object_tags:$url";
-    my $result = Memcached::get($key);
-    unless ($result) {
-        my $j = LWP::Simple::get($url);
-        if ($j) {
-            Memcached::set($key, $j, 3600);
-            return _osmxml_to_hash($j, $type);
-        } else {
-            print STDERR "No reply from $url\n";
+    
+    if ($memcached_available) {
+        my $key = "OSM:get_object_tags:$url";
+        my $result = Memcached::get($key);
+        if ($result) {
+            return _osmxml_to_hash($result, $type);
         }
-        return undef;
     }
-    return _osmxml_to_hash($result, $type);
+    
+    my $j = LWP::Simple::get($url);
+    if ($j) {
+        if ($memcached_available) {
+            my $key = "OSM:get_object_tags:$url";
+            Memcached::set($key, $j, 3600);
+        }
+        return _osmxml_to_hash($j, $type);
+    } else {
+        print STDERR "No reply from $url\n";
+    }
+    return undef;
 }
 
 # A better alternative might be

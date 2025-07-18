@@ -1,0 +1,11 @@
+// Removed #site-logo rule that set the FixMyStreet logo background image and hid the text
+
+#site-logo {
+    background: none !important;
+    background-image: none !important;
+    text-indent: 0 !important;
+    color: inherit !important;
+    width: auto !important;
+    height: auto !important;
+    display: inline-block !important;
+} 

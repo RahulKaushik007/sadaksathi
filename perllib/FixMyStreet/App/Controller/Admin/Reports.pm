@@ -199,7 +199,7 @@ sub edit_display : Private {
     );
 }
 
-sub edit : Path('/admin/report_edit') : Args(1) {
+sub edit : Path('/admin/reports/edit') : Args(1) {
     my ( $self, $c, $id ) = @_;
 
     my $problem = $c->cobrand->problems->search( { id => $id } )->first;

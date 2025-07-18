@@ -9,26 +9,6 @@
     <p align="center"><input type="submit" class="btn" name="Submit changes" value="[% loc('Submit changes') %]"></p>
 
     <ul>
-         [% uri = c.uri_for_email( '/report', problem.id ) %]
-    <li><a href="[% uri %]" class="admin-offsite-link">[% loc('View report on site' )%]</a></li>
-
-<li>[% loc('Co-ordinates:') %]
-<a href="[% c.config.MAPIT_URL %][%
-    '/' UNLESS c.config.MAPIT_URL.search('/$')
-%]point/4326/[% problem.longitude %],[% problem.latitude %].html"
-class="admin-offsite-link">[% problem.latitude %], [% problem.longitude %]</a>
-
-[% SET local_coords = problem.local_coords;
-   IF local_coords %]
-    ([% local_coords.0 %], [% local_coords.1 %])
-[% END %]
-
-<small>([%
-    postcode_safe = problem.postcode | html;
-    tprintf( loc('originally entered: &ldquo;%s&rdquo;'), postcode_safe )
-%],
-[% IF problem.used_map %][% loc('used map') %][% ELSE %][% loc("didn't use map") %][% END %])</small>
-</li>
 
 <li>[% loc('Bodies') %]:
   [% IF problem.bodies_str %]
@@ -136,17 +116,6 @@ class="admin-offsite-link">[% problem.latitude %], [% problem.longitude %]</a>
         </ul>
     [%~ ELSE %] No[% END ~%]
 </li>
-
-<li><label class="inline-text" for="non_public">[% loc('Private') %]:</label>
-    <input type="checkbox" id="non_public" name="non_public"[% ' checked' IF problem.non_public %]></li>
-
-<li><label class="inline-text" for="closed_updates">[% loc('Closed to updates') %]:</label>
-    <input type="checkbox" id="closed_updates" name="closed_updates"[% ' checked' IF problem.extra.closed_updates %]></li>
-
-[% IF c.user.is_superuser %]
-  <li><label class="inline-text" for="flagged">[% loc('Flagged:') %]</label>
-      <input type="checkbox" id="flagged" name="flagged"[% ' checked' IF problem.flagged %]></li>
-[%~ END ~%]
 
 [% IF problem.photo %]
 <li>

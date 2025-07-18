@@ -61,9 +61,85 @@
     }
 }
 
+// Hide the old geolocate link since we have the new button
+#geolocate_link {
+    display: none !important;
+}
+
+// Current location button styling for Bilaspur
+.postcode-form-box .current-location-btn {
+    background-color: $bluey !important;
+    color: white !important;
+    border-color: $bluey !important;
+    
+    &:hover,
+    &:focus {
+        background-color: darken($bluey, 10%) !important;
+        color: white !important;
+        border-color: darken($bluey, 10%) !important;
+    }
+    
+    &.loading {
+        background-color: darken($bluey, 15%) !important;
+        color: white !important;
+    }
+    
+    .geolocate-link__icon {
+        color: white;
+    }
+    
+    .geolocate-link__loading {
+        color: white;
+    }
+}
+
 // Map customization for Bilaspur
 .bilaspur-map-container {
     border: 3px solid $bluey;
     border-radius: 8px;
     overflow: hidden;
+}
+
+#site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em 1em;
+}
+
+#site-logo {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+  background: none !important;
+  background-image: none !important;
+  text-indent: 0 !important;
+  color: inherit !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0;
+  padding: 0;
+}
+
+#site-logo span {
+  color: #ffd600;
+  font-weight: bold;
+}
+
+#site-logo strong {
+  font-weight: bold;
+  margin-left: 0.2em;
+}
+
+@media (max-width: 600px) {
+  #site-header .container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.5em;
+  }
+  #site-logo {
+    font-size: 1.3rem;
+    margin-bottom: 0.5em;
+  }
 } 

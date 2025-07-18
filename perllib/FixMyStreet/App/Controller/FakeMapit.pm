@@ -21,6 +21,7 @@ world is one area, with ID 161 and name "Everywhere".
 =cut
 
 my $area = { "name" => "Everywhere", "type" => "ZZZ", "id" => 161 };
+my $bilaspur_area = { "name" => "Bilaspur Municipal Corporation", "type" => "local-authority-district", "id" => 999999 };
 
 has user_agent => (
     is => 'ro',
@@ -53,7 +54,15 @@ sub output : Private {
 
 sub point : Local {
     my ( $self, $c ) = @_;
-    $c->detach( 'output', [ { 161 => $area } ] );
+    
+    # Check if we're looking for local-authority-district type (handle comma-separated)
+    my $type = $c->req->param('type');
+    my @types = defined $type ? split(/,/, $type) : ();
+    if (grep { $_ eq 'local-authority-district' } @types) {
+        $c->detach( 'output', [ { 999999 => $bilaspur_area } ] );
+    } else {
+        $c->detach( 'output', [ { 161 => $area } ] );
+    }
 }
 
 sub area : Local {
@@ -63,7 +72,13 @@ sub area : Local {
 
 sub areas : Local {
     my ( $self, $c ) = @_;
-    $c->detach( 'output', [ { 161 => $area } ] );
+    my $type = $c->req->param('type');
+    my @types = defined $type ? split(/,/, $type) : ();
+    if (grep { $_ eq 'local-authority-district' } @types) {
+        $c->detach( 'output', [ { 999999 => $bilaspur_area } ] );
+    } else {
+        $c->detach( 'output', [ { 161 => $area } ] );
+    }
 }
 
 sub children : Path('area/161/children') : Args(0) {

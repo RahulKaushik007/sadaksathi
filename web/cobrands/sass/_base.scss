@@ -215,10 +215,10 @@ dd {
 
 blockquote {
   p:before {
-    content: "“";
+    content: "";
   }
   p:after {
-    content: "”";
+    content: "";
   }
 }
 
@@ -817,16 +817,7 @@ ul.error {
   position: relative;
 }
 
-#site-logo {
-  display: block;
-  width: 175px;
-  height: 60px;
-  background-position: 0 50%;
-  background-repeat: no-repeat;
-  background-size: 175px 35px;
-  background-image: url("/cobrands/fixmystreet/images/site-logo.svg");
-  text-indent: -999999px;
-}
+/* Removed #site-logo rule to allow custom logo text */
 
 // this is a skip to nav for mobile users only
 label[for="main-nav-btn"] {
@@ -2894,6 +2885,51 @@ label .muted {
     }
   }
 
+  .current-location-btn {
+    border: none;
+    padding: 0.5em;
+    flex: 14 0 auto;
+    background: $geolocation-link;
+    color: $geolocation-link-background-color;
+    border-radius: 0;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    margin-left: 1px;
+    
+    &:hover,
+    &:focus {
+      background: darken($geolocation-link, 10%);
+      color: $geolocation-link-background-color;
+    }
+    
+    &.loading {
+      background: darken($geolocation-link, 10%);
+      color: $geolocation-link-background-color;
+    }
+    
+    .geolocate-link__icon {
+      display: inline-block;
+      margin-right: 0.5em;
+      
+      .loading & {
+        display: none;
+      }
+    }
+    
+    .geolocate-link__loading {
+      display: none;
+      animation: 1.5s linear infinite spin;
+      
+      .loading & {
+        display: inline-block;
+        margin-right: 0.5em;
+      }
+    }
+  }
+
   ul {
     margin-top: 2em;
   }
@@ -3486,5 +3522,5 @@ $site-message-border: 1px solid #525252 !default;
 @import "_search-help";
 @import "_page-with-sticky-content-bar";
 
-@import "govuk-frontend/forms";
+//@import "govuk-frontend/forms";
 @import "_govuk"; // Adds some overrides to the default GOVUK behaviour

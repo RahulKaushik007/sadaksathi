@@ -612,7 +612,7 @@ sub url {
 
 sub admin_url {
     my ($self, $cobrand) = @_;
-    return $cobrand->admin_base_url . '/report_edit/' . $self->id;
+    return $cobrand->admin_base_url . '/reports/edit/' . $self->id;
 }
 
 =head2 tokenised_url

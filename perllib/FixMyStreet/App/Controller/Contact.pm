@@ -206,7 +206,7 @@ sub prepare_params_for_email : Private {
 
         my $user_latest_problem = $user->latest_visible_problem();
         if ( $user_latest_problem) {
-            $c->stash->{user_latest_report_admin_url} = $admin_url . '/report_edit/' . $user_latest_problem->id;
+            $c->stash->{user_latest_report_admin_url} = $admin_url . '/reports/edit/' . $user_latest_problem->id;
         }
     }
 
@@ -223,7 +223,7 @@ sub prepare_params_for_email : Private {
     elsif ( $c->stash->{problem} ) {
 
         $c->stash->{problem_url} = $base_url . '/report/' . $c->stash->{problem}->id;
-        $c->stash->{admin_url} = $admin_url . '/report_edit/' . $c->stash->{problem}->id;
+        $c->stash->{admin_url} = $admin_url . '/reports/edit/' . $c->stash->{problem}->id;
         $c->stash->{complaint} = sprintf(
             "Complaint about report %d",
             $c->stash->{problem}->id,

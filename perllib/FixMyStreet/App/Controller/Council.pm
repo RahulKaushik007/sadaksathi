@@ -55,6 +55,8 @@ sub load_and_check_areas : Private {
     # This can be used for, e.g., parish councils on a particular council
     # cobrand.
     $area_types = $c->cobrand->call_hook("add_extra_area_types" => $area_types) || $area_types;
+    # Deduplicate area_types
+    my %seen; $area_types = [ grep { !$seen{$_}++ } @$area_types ];
 
     my $all_areas;
 
@@ -74,8 +76,13 @@ sub load_and_check_areas : Private {
             keys %$all_areas
         };
     } else {
-        $all_areas =
-          FixMyStreet::MapIt::call('point', "4326/$longitude,$latitude", type => $area_types);
+        # For Bilaspur cobrand, skip MapIt call and use fallback directly
+        if ($c->cobrand->moniker eq 'bilaspur') {
+            $all_areas = {};
+        } else {
+            $all_areas =
+              FixMyStreet::MapIt::call('point', "4326/$longitude,$latitude", type => $area_types);
+        }
     }
     if ($all_areas->{error}) {
         $c->stash->{location_error_mapit_error} = 1;
